@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataViz-Pro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>DataViz-Pro</h1>
+        <nav>
+            <a href="#" class="nav-button">Dashboard</a>
+            <a href="#" class="nav-button">My Datasets</a>
+            <a href="#" class="nav-button">Settings</a>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Chart Recommendations</h3>
+                <div id="recommendations-list" class="recommendations-list">
+                    <p class="empty-state">Upload data to see chart recommendations</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <section class="upload-section">
+                <h2>Upload Your Data</h2>
+                <p>Support CSV and JSON files</p>
+                <div class="upload-container">
+                    <label for="file-upload" class="file-input-label">
+                        Choose File
+                        <input type="file" id="file-upload" accept=".csv,.json">
+                    </label>
+                    <div id="file-info" class="file-info"></div>
+                    <button class="upload-button" id="upload-btn" disabled>Upload & Analyze</button>
+                </div>
+            </section>
+
+            <section class="visualization-section">
+                <h2>Data Visualization</h2>
+                <div id="empty-state" class="empty-state">
+                    Upload data to visualize
+                </div>
+                <div id="chart-container" class="chart-container" style="display: none;">
+                    <canvas id="chart"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const fileUpload = document.getElementById('file-upload');
+        const fileInfo = document.getElementById('file-info');
+        const uploadBtn = document.getElementById('upload-btn');
+        const emptyState = document.getElementById('empty-state');
+        const chartContainer = document.getElementById('chart-container');
+        const recommendationsList = document.getElementById('recommendations-list');
+        let chartInstance = null;
+
+        fileUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                fileInfo.textContent = `Selected file: ${file.name}`;
+                uploadBtn.disabled = false;
+            } else {
+                fileInfo.textContent = '';
+                uploadBtn.disabled = true;
+            }
+        });
+
+        function createRecommendationCard(type, confidence) {
+            return `
+                <div class="recommendation-card" onclick="updateChart('${type}')">
+                    <h4>${type}</h4>
+                    <div class="confidence-bar">
+                        <div class="confidence-level" style="width: ${confidence}%"></div>
+                    </div>
+                    <p>Confidence: ${confidence}%</p>
+                </div>
+            `;
+        }
+
+        function updateChart(chartType) {
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            const ctx = document.getElementById('chart').getContext('2d');
+            chartInstance = new Chart(ctx, {
+                type: chartType.toLowerCase(),
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: 'Sample Data',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        uploadBtn.addEventListener('click', () => {
+            const file = fileUpload.files[0];
+            if (!file) return;
+
+            uploadBtn.textContent = 'Analyzing...';
+            uploadBtn.disabled = true;
+
+            // Simulate data analysis and recommendations
+            setTimeout(() => {
+                // Show recommendations
+                recommendationsList.innerHTML = `
+                    ${createRecommendationCard('Bar Chart', 90)}
+                    ${createRecommendationCard('Scatter Plot', 80)}
+                `;
+
+                // Show chart
+                emptyState.style.display = 'none';
+                chartContainer.style.display = 'block';
+                updateChart('bar');
+
+                uploadBtn.textContent = 'Upload & Analyze';
+                uploadBtn.disabled = false;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
