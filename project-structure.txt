@@ -1,0 +1,5 @@
+dataviz-pro/
+├── client/                 # React frontend
+├── server/                 # Node.js + Express backend
+├── ai-service/            # Flask AI service
+└── docker-compose.yml     # Container orchestration
