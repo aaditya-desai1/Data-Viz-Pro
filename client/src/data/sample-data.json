@@ -1,0 +1,189 @@
+{
+  "records": [
+    {
+      "id": 1,
+      "date": "2023-01-15",
+      "category": "Sales",
+      "value": 1250.45,
+      "region": "North America",
+      "growth_rate": 12.5,
+      "month": "January",
+      "quarter": "Q1"
+    },
+    {
+      "id": 2,
+      "date": "2023-01-16",
+      "category": "Marketing",
+      "value": 850.30,
+      "region": "Europe",
+      "growth_rate": 8.2,
+      "month": "January",
+      "quarter": "Q1"
+    },
+    {
+      "id": 3,
+      "date": "2023-01-17",
+      "category": "Operations",
+      "value": 2100.75,
+      "region": "Asia",
+      "growth_rate": 15.7
+    },
+    {
+      "id": 4,
+      "date": "2023-01-18",
+      "category": "Sales",
+      "value": 1575.60,
+      "region": "South America",
+      "growth_rate": 10.3
+    },
+    {
+      "id": 5,
+      "date": "2023-01-19",
+      "category": "Marketing",
+      "value": 920.15,
+      "region": "Europe",
+      "growth_rate": 7.8
+    },
+    {
+      "id": 6,
+      "date": "2023-01-20",
+      "category": "Operations",
+      "value": 1850.90,
+      "region": "North America",
+      "growth_rate": 13.2
+    },
+    {
+      "id": 7,
+      "date": "2023-01-21",
+      "category": "Sales",
+      "value": 1680.25,
+      "region": "Asia",
+      "growth_rate": 11.9
+    },
+    {
+      "id": 8,
+      "date": "2023-01-22",
+      "category": "Marketing",
+      "value": 780.45,
+      "region": "South America",
+      "growth_rate": 6.5
+    },
+    {
+      "id": 9,
+      "date": "2023-01-23",
+      "category": "Operations",
+      "value": 2250.80,
+      "region": "Europe",
+      "growth_rate": 16.4
+    },
+    {
+      "id": 10,
+      "date": "2023-01-24",
+      "category": "Sales",
+      "value": 1450.35,
+      "region": "North America",
+      "growth_rate": 9.8
+    },
+    {
+      "id": 11,
+      "date": "2023-01-25",
+      "category": "Marketing",
+      "value": 890.70,
+      "region": "Asia",
+      "growth_rate": 7.1
+    },
+    {
+      "id": 12,
+      "date": "2023-01-26",
+      "category": "Operations",
+      "value": 1950.55,
+      "region": "South America",
+      "growth_rate": 14.6
+    },
+    {
+      "id": 13,
+      "date": "2023-01-27",
+      "category": "Sales",
+      "value": 1320.85,
+      "region": "Europe",
+      "growth_rate": 8.9
+    },
+    {
+      "id": 14,
+      "date": "2023-01-28",
+      "category": "Marketing",
+      "value": 750.95,
+      "region": "North America",
+      "growth_rate": 5.4
+    },
+    {
+      "id": 15,
+      "date": "2023-01-29",
+      "category": "Operations",
+      "value": 2150.40,
+      "region": "Asia",
+      "growth_rate": 17.2
+    },
+    {
+      "id": 16,
+      "date": "2023-01-30",
+      "category": "Sales",
+      "value": 1480.65,
+      "region": "South America",
+      "growth_rate": 10.7
+    },
+    {
+      "id": 17,
+      "date": "2023-01-31",
+      "category": "Marketing",
+      "value": 830.20,
+      "region": "Europe",
+      "growth_rate": 6.8
+    },
+    {
+      "id": 18,
+      "date": "2023-02-01",
+      "category": "Operations",
+      "value": 2080.10,
+      "region": "North America",
+      "growth_rate": 15.1
+    },
+    {
+      "id": 19,
+      "date": "2023-02-02",
+      "category": "Sales",
+      "value": 1590.75,
+      "region": "Asia",
+      "growth_rate": 11.4,
+      "month": "February",
+      "quarter": "Q1"
+    },
+    {
+      "id": 20,
+      "date": "2023-02-03",
+      "category": "Marketing",
+      "value": 870.30,
+      "region": "South America",
+      "growth_rate": 7.5,
+      "month": "February",
+      "quarter": "Q1"
+    }
+  ],
+  "aggregated_data": {
+    "by_category": [
+      {"category": "Sales", "total_value": 7247.05, "average_growth": 10.66},
+      {"category": "Marketing", "total_value": 4892.05, "average_growth": 6.97},
+      {"category": "Operations", "total_value": 10383.5, "average_growth": 15.4}
+    ],
+    "by_region": [
+      {"region": "North America", "total_value": 7132.45, "average_growth": 10.2},
+      {"region": "Europe", "total_value": 6172.8, "average_growth": 9.82},
+      {"region": "Asia", "total_value": 7412.85, "average_growth": 12.66},
+      {"region": "South America", "total_value": 5657.05, "average_growth": 9.82}
+    ],
+    "by_month": [
+      {"month": "January", "total_value": 19050.7, "count": 17},
+      {"month": "February", "total_value": 4541.15, "count": 3}
+    ]
+  }
+}

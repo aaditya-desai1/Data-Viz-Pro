@@ -3,13 +3,48 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const cors = require('cors');
 const path = require('path');
+const bodyParser = require('body-parser');
+const csv = require('csv-parser'); // Add CSV parser
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json()); // For JSON data
+app.use(express.urlencoded({ extended: true })); // For form data
+
+// CSV file upload handler
+app.post('/api/upload/csv', (req, res) => {
+  // Handle CSV file upload
+  const results = [];
+  
+  if (!req.files || !req.files.file) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
+  
+  const csvFile = req.files.file;
+  
+  fs.createReadStream(csvFile.tempFilePath)
+    .pipe(csv())
+    .on('data', (data) => results.push(data))
+    .on('end', () => {
+      // Process the CSV data
+      res.json({ success: true, data: results });
+    });
+});
+
+// JSON data endpoint
+app.post('/api/upload/json', (req, res) => {
+  // JSON is already parsed by bodyParser.json()
+  if (!req.body || Object.keys(req.body).length === 0) {
+    return res.status(400).json({ error: 'No JSON data provided' });
+  }
+  
+  // Process the JSON data
+  res.json({ success: true, data: req.body });
+});
 
 // MongoDB connection
 mongoose.connect('mongodb://localhost:27017/dataviz-pro', {
